@@ -1,24 +1,47 @@
-from llama_index.core import SimpleDirectoryReader
 import sys
 from QAWithPDF.exception import customexception
 from logger import logging
+from llama_index.core import Document
 
-def load_data(data):
+import docx
+import fitz  # PyMuPDF
+
+def load_data(uploaded_file):
     """
-    Load PDF documents from a specified directory.
+    Load and parse text from uploaded .txt, .pdf, or .docx file.
 
     Parameters:
-    - data (str): The path to the directory containing PDF files.
+    - uploaded_file: Streamlit uploaded file (BytesIO)
 
     Returns:
-    - A list of loaded PDF documents. The specific type of documents may vary.
+    - List[Document]: A list containing one LlamaIndex Document object
     """
     try:
-        logging.info("data loading started...")
-        loader = SimpleDirectoryReader("Data")
-        documents=loader.load_data()
-        logging.info("data loading completed...")
-        return documents
+        logging.info(f"Loading file: {uploaded_file.name}")
+
+        file_type = uploaded_file.name.split('.')[-1].lower()
+
+        if file_type == "txt":
+            content = uploaded_file.read().decode("utf-8")
+
+        elif file_type == "pdf":
+            pdf_doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+            content = ""
+            for page in pdf_doc:
+                content += page.get_text()
+            pdf_doc.close()
+
+        elif file_type == "docx":
+            doc = docx.Document(uploaded_file)
+            content = "\n".join([para.text for para in doc.paragraphs])
+
+        else:
+            raise ValueError("Unsupported file type. Please upload a .txt, .pdf, or .docx file.")
+
+        document = Document(text=content, metadata={"filename": uploaded_file.name})
+        logging.info(f"File loaded successfully: {uploaded_file.name}")
+        return [document]
+
     except Exception as e:
-        logging.info("exception in loading data...")
-        raise customexception(e,sys)
+        logging.error("Error during document loading.")
+        raise customexception(e, sys)
