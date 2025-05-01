@@ -24,11 +24,7 @@ DocQuest is a simple and interactive Streamlit web app that allows users to ask 
 
 ## 📁 Directory Structure
 
-QAWithPDF/ ├── data_ingestion.py # Loads and parses uploaded documents 
-           ├── embedding.py # Generates document embeddings using Gemini
-           ├── model_api.py # Loads the LLM for answering questions
-main.py # Main Streamlit app script
-logo.png # App logo README.md requirements.txt
+QAWithPDF/ ├── data_ingestion.py # Loads and parses uploaded documents ├── embedding.py # Generates document embeddings using Gemini ├── model_api.py # Loads the LLM for answering questions main.py # Main Streamlit app script logo.png # App logo README.md requirements.txt
 
 
 ## ▶️ Getting Started
@@ -36,31 +32,29 @@ logo.png # App logo README.md requirements.txt
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/DocQuest.git
-cd DocQuest
+git clone https://github.com/vishal220703/Document-QA-System.git
+cd LLM Project
+```
 
+### 2. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+### 3. Run the App
 
+```bash
 streamlit run main.py
-
-📄 Sample Usage
-Upload a .pdf, .txt, or .docx file.
-
-Ask a question like "What is the main topic of the document?"
-
-Get an instant response powered by your document content.
+```
 
 📌 Notes
-Ensure you have access to the required embedding model API (e.g., Gemini or OpenAI).
+You must configure your embedding and LLM API keys in the respective modules (embedding.py, model_api.py).
 
-For privacy, documents are processed in memory and not stored.
+All uploaded documents are processed in memory and are not stored permanently.
+
+Logo can be replaced by adding your own logo.png to the root directory.
 
 🧑‍💻 Author
-Vishal – LinkedIn | GitHub
-
-📝 License
-This project is licensed under the MIT License.
-
-yaml
-Copy
-Edit
+Vishal M
+📫 LinkedIn
+💻 GitHub
