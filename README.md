@@ -25,7 +25,16 @@ DocQuest is a simple and interactive Streamlit web app that allows users to ask 
 
 ## 📁 Directory Structure
 
-QAWithPDF/ ├── data_ingestion.py # Loads and parses uploaded documents ├── embedding.py # Generates document embeddings using Gemini ├── model_api.py # Loads the LLM for answering questions StreamlitApp.py # Main Streamlit app script logo.png # App logo README.md requirements.txt
+```bash
+QAWithPDF/
+├── data_ingestion.py      # Loads and parses uploaded documents
+├── embedding.py           # Generates document embeddings using Gemini
+├── model_api.py           # Loads the LLM for answering questions
+StreamlitApp.py            # Main Streamlit app script
+logo.png                   # App logo
+README.md
+requirements.txt
+```
 
 
 ## ▶️ Getting Started
