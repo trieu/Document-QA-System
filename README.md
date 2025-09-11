@@ -1,10 +1,6 @@
-Here’s a tightened and more professional version of your README text. I’ve improved clarity, flow, and formatting while keeping it engaging and developer-friendly:
-
----
-
 # Document-QA-System 📄🤖
 
-![GitHub release](https://img.shields.io/github/release/gwyndolin75/Document-QA-System.svg) [![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-Click%20Here-brightgreen)](https://github.com/gwyndolin75/Document-QA-System/releases)
+![GitHub release](https://img.shields.io/github/release/trieu/Document-QA-System.svg) [![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-Click%20Here-brightgreen)](https://github.com/trieu/Document-QA-System/releases)
 
 **Document-QA-System** is a Streamlit-powered application that lets you ask questions directly about the content of uploaded documents. It combines **Gemini embeddings** with a **language model** to deliver fast, context-aware answers. The app supports multiple document formats, including **PDF, TXT, and DOCX**.
 
