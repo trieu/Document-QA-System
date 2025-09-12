@@ -6,6 +6,8 @@ python-dotenv
 IPython
 llama-index-embeddings-gemini
 streamlit
+streamlit-authenticator
 
 python-docx
 PyMuPDF
+bcrypt
