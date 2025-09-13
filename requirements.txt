@@ -5,6 +5,7 @@ pypdf
 python-dotenv
 IPython
 llama-index-embeddings-gemini
+llama-index-vector-stores-postgres
 streamlit
 streamlit-authenticator
 

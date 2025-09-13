@@ -1,3 +1,13 @@
+import logging
+import sys
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+
+
 import streamlit as st
 import streamlit_authenticator as stauth
 
@@ -5,6 +15,7 @@ from QAWithPDF.data_ingestion import load_data
 from QAWithPDF.embedding import download_gemini_embedding
 from QAWithPDF.model_api import load_model
 
+from user_chat_history import QAHistory
 from user_management import init_db, get_users, list_users
 
 
@@ -38,28 +49,41 @@ def main():
         # ===== Chatbot UI =====
         st.markdown("<h1 style='color: #4A90E2;'>DocQuest</h1>", unsafe_allow_html=True)
 
+        # Load QA history for this user
+        qa_manager = QAHistory(username)
         if "history" not in st.session_state:
-            st.session_state.history = []
+            st.session_state.history = qa_manager.load()
 
         doc = st.file_uploader("📄 Upload your document", type=["pdf", "txt", "docx"])
-        user_question = st.text_input("💬 Ask your question")
+        
+        # File size check (10 MB max)
+        if doc is not None and doc.size > 10 * 1024 * 1024:
+            st.error("❌ File size exceeds 10 MB. Please upload a smaller file.")
+            doc = None  # reset
+  
+        user_question = st.text_area(label="💬 Ask your question", height=120)
+        user_question_str = user_question.strip()
 
         if st.button("Submit & Process"):
             if doc is None:
                 st.warning("Please upload a document before submitting.")
-            elif not user_question.strip():
+            elif len(user_question_str) == 0:
                 st.warning("Please enter a question.")
             else:
                 with st.spinner("Processing..."):
                     document = load_data(doc)
                     model = load_model()
                     query_engine = download_gemini_embedding(model, document)
-                    response = query_engine.query(user_question)
+                    response = query_engine.query(user_question_str)
 
-                    st.session_state.history.append(
-                        (user_question, response.response)
-                    )
+                    # ✅ Save only the latest Q&A to SQLite
+                    qa_manager.save(user_question_str, response.response)
+
+                    # ✅ Update session memory
+                    st.session_state.history.append((user_question_str, response.response))
+
                     st.write(response.response)
+
 
         if st.session_state.history:
             st.markdown("### 📜 Previous Questions & Answers")

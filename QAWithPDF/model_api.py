@@ -11,6 +11,8 @@ from logger import logging
 load_dotenv()
 
 GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
+GEMINI_MODEL_NAME=os.getenv("GEMINI_MODEL_NAME",'models/gemini-2.5-flash-lite')
+
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -23,7 +25,8 @@ def load_model():
     - Gemini: An instance of the Gemini class initialized with the 'gemini-pro' model.
     """
     try:
-        model=Gemini(models='gemini-pro',api_key=GOOGLE_API_KEY)
+        logging.info("Initializing GEMINI_MODEL_NAME: %s", GEMINI_MODEL_NAME)
+        model=Gemini(models=GEMINI_MODEL_NAME,api_key=GOOGLE_API_KEY)
         return model
     except Exception as e:
         raise customexception(e,sys)
