@@ -60,6 +60,11 @@ Follow these steps to set up locally:
    ```
 
    ```env
+   GEMINI_MODEL_NAME=models/gemini-2.5-flash-lite
+   EMBEDDING_MODEL_NAME=gemini-embedding-001
+   CACHE_DIR=./cache/vector_index
+   SQLITE_DB_FILE=./database/doc_qa_app.db
+
    GOOGLE_API_KEY=your_api_key_here
    ```
 

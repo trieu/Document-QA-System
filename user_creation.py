@@ -1,5 +1,5 @@
 import argparse
-from user_management import init_db, add_user
+from user_management import UserDao
 
 
 def main():
@@ -12,9 +12,9 @@ def main():
 
     args = parser.parse_args()
 
-    init_db()
+    user_dao = UserDao()
     try:
-        add_user(args.username, args.password, args.role)
+        user_dao.add_user(args.username, args.password, args.role)
         print(f"✅ User '{args.username}' created successfully with role '{args.role}'")
     except Exception as e:
         print(f"❌ Failed to create user: {e}")
