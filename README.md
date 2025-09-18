@@ -33,11 +33,18 @@
 ## 🛠️ Technologies Used
 
 * **[Streamlit](https://streamlit.io/)** → Web UI framework in Python.
-* **[Gemini API](https://aistudio.google.com/)** → Document embeddings & retrieval.
-* **[LangChain](https://www.langchain.com/)** → Orchestrates LLM workflows.
-* **NLP** → Interprets and processes user queries.
-* **Python** → Core development language.
-* **PyPDF, python-docx, etc.** → For document parsing and preprocessing.
+* **[Streamlit-Authenticator](https://github.com/mkhorasani/Streamlit-Authenticator)** → Secure authentication for Streamlit apps.
+* **[Google Gemini API](https://aistudio.google.com/)** → LLM-powered text generation, embeddings, and retrieval.
+* **[LlamaIndex](https://www.llamaindex.ai/)** → Framework for building retrieval-augmented generation (RAG) pipelines.
+* **[LlamaIndex + Gemini](https://www.llamaindex.ai/)** → Gemini LLM & embeddings integrated via LlamaIndex connectors.
+* **[PostgreSQL Vector Store](https://www.postgresql.org/)** → Scalable vector database integration with `llama-index-vector-stores-postgres`.
+* **[PyPDF](https://pypi.org/project/pypdf/)** & **[PyMuPDF](https://pymupdf.readthedocs.io/)** → PDF text and metadata extraction.
+* **[python-docx](https://python-docx.readthedocs.io/)** → Parsing and processing Microsoft Word documents.
+* **[python-dotenv](https://pypi.org/project/python-dotenv/)** → Environment variable management.
+* **[bcrypt](https://pypi.org/project/bcrypt/)** → Secure password hashing.
+* **[bleach](https://bleach.readthedocs.io/)** → HTML sanitization for safe text rendering.
+* **[IPython](https://ipython.org/)** → Interactive Python development environment.
+* **Python** → Core development language for orchestration and integration.
 
 ---
 
